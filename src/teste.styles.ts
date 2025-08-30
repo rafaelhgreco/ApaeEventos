@@ -1,12 +1,10 @@
 import emotion from '@emotion/native';
+import { Container } from './base';
 
-const Container = emotion.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+const ContainerTeste = emotion(Container.Flex)`
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const Styled = {
-  Container,
+  ContainerTeste,
 };
