@@ -2,7 +2,7 @@ import emotion from '@emotion/native';
 import { Container } from './base';
 
 const ContainerTeste = emotion(Container.Flex)`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Styled = {
