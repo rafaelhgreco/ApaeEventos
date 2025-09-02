@@ -26,4 +26,12 @@ export const userRepository: UserRepository = {
   async deleteUser(id) {
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
   },
+  async loginApi(idToken: string) {
+    const res = await fetch(`http://10.0.2.2:8080/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_token: idToken }),
+    });
+    return await res.json();
+  },
 };

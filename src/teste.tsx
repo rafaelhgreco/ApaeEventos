@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, ActivityIndicator, TextInput } from 'react-native';
+import {
+  View,
+  Button,
+  ActivityIndicator,
+  TextInput,
+  Alert,
+} from 'react-native';
 import { Typography } from './base';
 import { useUser } from './features/user/UI/use-user';
 import { Styled } from './teste.styles';
+import { useUserStore } from './features/user/UI/user.store';
+import { signIn } from './features/user/firebase/sing-in.auth';
+import { LoginForm } from './features/user/UI/LoginForm';
 
 const Teste = () => {
   const { users, loading, error, listUsers, createUser } = useUser();
@@ -13,8 +22,10 @@ const Teste = () => {
     type: '',
   });
 
+  const { token, setToken, clearToken } = useUserStore();
+
   useEffect(() => {
-    listUsers(); // Lista usuários ao montar
+    listUsers();
   }, [listUsers]);
 
   const handleChange = (field: string, value: string) => {
@@ -24,6 +35,21 @@ const Teste = () => {
   const handleSubmit = () => {
     createUser(form);
     setForm({ name: '', email: '', password: '', type: '' });
+  };
+
+  const handleLogin = async () => {
+    try {
+      const idToken = await signIn(form.email, form.password);
+      setToken(idToken);
+      Alert.alert('Token recuperado!', idToken);
+    } catch (error: any) {
+      Alert.alert('Erro ao autenticar', error.message || 'Erro desconhecido');
+    }
+  };
+
+  const handleLogout = () => {
+    clearToken();
+    Alert.alert('Logout realizado!');
   };
 
   return (
@@ -85,6 +111,7 @@ const Teste = () => {
         }}
       />
       <Button title="Cadastrar" onPress={handleSubmit} />
+
       <Typography.Title>Usuários</Typography.Title>
       {loading && <ActivityIndicator />}
       {error && <Typography.Label color="red">{error}</Typography.Label>}
@@ -94,6 +121,7 @@ const Teste = () => {
           <Typography.Label color="red">{user.email}</Typography.Label>
         </Styled.ContainerTeste>
       ))}
+      <LoginForm />
     </Styled.ContainerTeste>
   );
 };
