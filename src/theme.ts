@@ -2,6 +2,7 @@ interface Theme {
   colors: {
     primary: string;
     secondary: string;
+    terceary: string;
     background: string;
     text: string;
     border: string;
@@ -31,6 +32,7 @@ export const defaultTheme: Theme = {
   colors: {
     primary: '#010101',
     secondary: '#7A1CAC',
+    terceary: '#2E073F',
     background: '#FBFBFB',
     text: '#2b2d42',
     border: '#AD49E1',
@@ -61,6 +63,7 @@ export const darkTheme: Theme = {
   colors: {
     primary: '#62B6CB',
     secondary: '#8EE3F5',
+    terceary: '#F4A261',
     background: '#2b2d42',
     text: '#FBFBFB',
     border: '#F4A261',

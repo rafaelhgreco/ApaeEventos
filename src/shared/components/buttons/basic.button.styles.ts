@@ -50,7 +50,9 @@ const Button = styled.TouchableOpacity<{
 
 const Label = styled(Text)<{ variant: Variant; size?: Size }>`
   color: ${({ variant }) =>
-    variant === 'primary' ? theme.color('background') : theme.color('primary')};
+    variant === 'primary'
+      ? theme.color('background')
+      : theme.color('secondary')};
   font-size: ${({ size = 'medium' }) => sizeFont[size]};
   font-weight: 600;
   text-align: center;
