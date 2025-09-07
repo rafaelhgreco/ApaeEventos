@@ -9,7 +9,7 @@ interface InputProps {
   onChange?: (value: string) => void;
   onClick?: () => void;
   placeholder?: string;
-  [key: string]: any; // para props extras
+  [key: string]: any;
 }
 
 const InputButton = ({

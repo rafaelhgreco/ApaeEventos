@@ -9,11 +9,14 @@ import { defaultTheme, darkTheme } from './src/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { TesteDois } from './src/testedois';
-import { Login } from './src/pages/login';
+import { HomePage } from './src/pages/home';
+import { LoginPage } from './src/pages/login';
+import { LoginForm } from './src/features/user/ui/LoginForm';
 
 const Stack = createNativeStackNavigator<{
   Home: undefined;
-  TesteDois: undefined;
+  Login: undefined;
+  Register: undefined;
 }>();
 
 function App() {
@@ -28,12 +31,17 @@ function App() {
           <Stack.Navigator>
             <Stack.Screen
               name="Home"
-              component={Login}
+              component={HomePage}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="TesteDois"
-              component={TesteDois}
+              name="Login"
+              component={LoginPage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={LoginForm}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
