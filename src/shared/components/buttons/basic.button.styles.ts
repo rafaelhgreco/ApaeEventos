@@ -44,13 +44,13 @@ const Button = styled.TouchableOpacity<{
   background-color: ${({ variant }) =>
     variant === 'primary' ? theme.color('primary') : 'transparent'};
   border: ${({ variant }) =>
-    variant === 'outlined' ? `2px solid ${theme.color('primary')}` : 'none'};
+    variant === 'outlined' ? `1px solid ${theme.color('secondary')}` : 'none'};
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 `;
 
 const Label = styled(Text)<{ variant: Variant; size?: Size }>`
   color: ${({ variant }) =>
-    variant === 'primary' ? theme.color('text') : theme.color('primary')};
+    variant === 'primary' ? theme.color('background') : theme.color('primary')};
   font-size: ${({ size = 'medium' }) => sizeFont[size]};
   font-weight: 600;
   text-align: center;

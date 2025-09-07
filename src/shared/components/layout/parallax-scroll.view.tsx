@@ -36,7 +36,7 @@ const Parallax: React.FC<ParallaxProps> = ({ children }) => {
           style={{ width: 120, height: 120 }}
           resizeMode="contain"
         /> */}
-        <Typography.Title color="#333">Sua imagem aqui!</Typography.Title>
+        <Typography.Title>Sua imagem aqui!</Typography.Title>
       </Styled.AnimatedHeader>
       <Styled.AnimatedScrollView
         contentContainerStyle={{ paddingTop: HEADER_HEIGHT, padding: 20 }}

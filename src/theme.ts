@@ -29,11 +29,11 @@ interface Theme {
 
 export const defaultTheme: Theme = {
   colors: {
-    primary: '#C6E7FF',
-    secondary: '#D4F6FF',
+    primary: '#010101',
+    secondary: '#7A1CAC',
     background: '#FBFBFB',
     text: '#2b2d42',
-    border: '#FFDDAE',
+    border: '#AD49E1',
   },
   spacing: {
     xs: 4,

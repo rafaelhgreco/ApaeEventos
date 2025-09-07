@@ -12,6 +12,7 @@ import { TesteDois } from './src/testedois';
 import { HomePage } from './src/pages/home';
 import { LoginPage } from './src/pages/login';
 import { LoginForm } from './src/features/user/ui/LoginForm';
+import { RegisterPage } from './src/pages/register';
 
 const Stack = createNativeStackNavigator<{
   Home: undefined;
@@ -41,7 +42,7 @@ function App() {
             />
             <Stack.Screen
               name="Register"
-              component={LoginForm}
+              component={RegisterPage}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

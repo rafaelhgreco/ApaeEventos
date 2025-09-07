@@ -11,7 +11,7 @@ const AnimatedHeader = styled(Animated.View)<{
   left: 0;
   right: 0;
   height: ${({ height }) => height || 220}px;
-  background-color: ${theme.color('primary')};
+  background-color: ${theme.color('secondary')};
   justify-content: center;
   align-items: center;
   z-index: 1;

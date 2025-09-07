@@ -24,7 +24,7 @@ type RootStackParamList = {
 const TesteDois = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { users, loading, error, listUsers, createUser } = useUser();
+  const { users, loading, error, controller } = useUser();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -35,31 +35,16 @@ const TesteDois = () => {
   const { token, setToken, clearToken } = useUserStore();
 
   useEffect(() => {
-    listUsers();
-  }, [listUsers]);
+    controller.listUsers();
+  }, [controller.listUsers]);
 
   const handleChange = (field: string, value: string) => {
     setForm(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = () => {
-    createUser(form);
+    controller.createUser(form);
     setForm({ name: '', email: '', password: '', type: '' });
-  };
-
-  const handleLogin = async () => {
-    try {
-      const idToken = await signIn(form.email, form.password);
-      setToken(idToken);
-      Alert.alert('Token recuperado!', idToken);
-    } catch (error: any) {
-      Alert.alert('Erro ao autenticar', error.message || 'Erro desconhecido');
-    }
-  };
-
-  const handleLogout = () => {
-    clearToken();
-    Alert.alert('Logout realizado!');
   };
 
   return (

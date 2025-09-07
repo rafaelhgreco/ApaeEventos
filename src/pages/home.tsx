@@ -18,7 +18,7 @@ const HomePage = () => {
     },
     {
       label: 'Criar Conta',
-      variant: 'minimal' as const,
+      variant: 'outlined' as const,
       size: 'large' as const,
       handleClick: () => navigation.navigate('Register'),
     },

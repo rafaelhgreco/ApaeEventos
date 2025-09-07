@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, TouchableOpacity, Text, View } from 'react-native';
 import { Styled } from './input.button.styles';
+import { Typography } from '../../../base';
 
 interface InputProps {
   type: 'button' | 'text' | 'email' | 'password' | 'number' | 'date';
@@ -24,14 +25,11 @@ const InputButton = ({
   switch (type) {
     case 'button':
       return (
-        <Styled.InputButton onPress={onClick} {...rest}>
-          <Text>{label}</Text>
-        </Styled.InputButton>
+        <Styled.InputButton onPress={onClick} {...rest}></Styled.InputButton>
       );
     case 'password':
       return (
-        <View>
-          <Text>{label}</Text>
+        <Styled.InputContainer>
           <Styled.InputField
             value={value}
             onChangeText={onChange}
@@ -39,14 +37,13 @@ const InputButton = ({
             secureTextEntry
             {...rest}
           />
-        </View>
+        </Styled.InputContainer>
       );
     case 'email':
     case 'text':
     case 'number':
       return (
-        <View>
-          <Text>{label}</Text>
+        <Styled.InputContainer>
           <Styled.InputField
             value={value}
             onChangeText={onChange}
@@ -54,9 +51,8 @@ const InputButton = ({
             keyboardType={type === 'number' ? 'numeric' : 'default'}
             {...rest}
           />
-        </View>
+        </Styled.InputContainer>
       );
-    // Adicione outros tipos conforme necessário
     default:
       return null;
   }
