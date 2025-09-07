@@ -5,36 +5,42 @@ import {
 } from 'react-native-safe-area-context';
 import { Teste } from './src/teste';
 import { ThemeProvider } from '@emotion/react';
-import { lightTheme, darkTheme } from './src/theme';
+import { defaultTheme, darkTheme } from './src/theme';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { TesteDois } from './src/testedois';
+import { Login } from './src/pages/login';
+
+const Stack = createNativeStackNavigator<{
+  Home: undefined;
+  TesteDois: undefined;
+}>();
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  const theme = isDarkMode ? darkTheme : lightTheme;
+  const theme = isDarkMode ? darkTheme : defaultTheme;
 
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <AppContent />
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="TesteDois"
+              component={TesteDois}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
       </SafeAreaProvider>
     </ThemeProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <Teste />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

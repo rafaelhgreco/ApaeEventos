@@ -6,3 +6,4 @@ declare module '@env' {
   export const MESSAGING_SENDER_ID: string;
   export const APP_ID: string;
 }
+declare module 'react-native-parallax-scroll-view';

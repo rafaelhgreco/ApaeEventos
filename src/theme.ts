@@ -12,6 +12,7 @@ interface Theme {
     md: number;
     lg: number;
     xl: number;
+    xxl: number;
   };
   borderRadius: {
     sm: number;
@@ -26,13 +27,13 @@ interface Theme {
   };
 }
 
-export const lightTheme: Theme = {
+export const defaultTheme: Theme = {
   colors: {
-    primary: '#4361ee',
-    secondary: '#f72585',
-    background: '#ffffff',
+    primary: '#C6E7FF',
+    secondary: '#D4F6FF',
+    background: '#FBFBFB',
     text: '#2b2d42',
-    border: '#e9ecef',
+    border: '#FFDDAE',
   },
   spacing: {
     xs: 4,
@@ -40,6 +41,7 @@ export const lightTheme: Theme = {
     md: 16,
     lg: 24,
     xl: 32,
+    xxl: 40,
   },
   borderRadius: {
     sm: 4,
@@ -55,14 +57,12 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+  ...defaultTheme,
   colors: {
-    primary: '#4895ef',
-    secondary: '#f72585',
-    background: '#121212',
-    text: '#edf2f4',
-    border: '#2d2d2d',
+    primary: '#62B6CB',
+    secondary: '#8EE3F5',
+    background: '#2b2d42',
+    text: '#FBFBFB',
+    border: '#F4A261',
   },
-  spacing: { ...lightTheme.spacing },
-  borderRadius: { ...lightTheme.borderRadius },
-  fontSizes: { ...lightTheme.fontSizes },
 };

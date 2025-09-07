@@ -13,15 +13,15 @@ import { useUserStore } from './features/user/ui/user.store';
 import { signIn } from './features/user/firebase/sing-in.auth';
 import { LoginForm } from './features/user/ui/LoginForm';
 import { defaultTheme } from './theme';
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 type RootStackParamList = {
   Home: undefined;
   TesteDois: undefined;
 };
 
-const Teste = () => {
+const TesteDois = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { users, loading, error, listUsers, createUser } = useUser();
@@ -122,10 +122,9 @@ const Teste = () => {
       />
       <Button title="Cadastrar" onPress={handleSubmit} />
       <Button
-        title="Proxima pagina"
-        onPress={() => navigation.navigate('TesteDois')}
+        title="Voltar pagina"
+        onPress={() => navigation.navigate('Home')}
       />
-
       <Typography.Title>Usuários</Typography.Title>
       {loading && <ActivityIndicator />}
       {error && <Typography.Label color="red">{error}</Typography.Label>}
@@ -140,4 +139,4 @@ const Teste = () => {
   );
 };
 
-export { Teste };
+export { TesteDois };
