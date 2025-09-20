@@ -4,6 +4,9 @@ import type { User } from '../entity/user.entity';
 import { signIn } from '../firebase/sing-in.auth';
 import { useUserStore } from './user.store';
 import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../types/root.types';
 
 interface UseUserController {
   handleLogin: (email: string, password: string) => Promise<void>;
@@ -11,6 +14,7 @@ interface UseUserController {
   createUser: (
     userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>,
   ) => Promise<User | null>;
+  handleLoginSubmit: (email: string, password: string) => Promise<void>;
 }
 
 interface UseUserProps {
@@ -24,6 +28,8 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { setToken } = useUserStore();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleLogin = useCallback(
     async (email: string, password: string) => {
@@ -74,10 +80,21 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
     [],
   );
 
+  const handleLoginSubmit = async (email: string, password: string) => {
+    try {
+      await controller.handleLogin(email, password);
+      Alert.alert('Login realizado com sucesso!');
+      navigation.navigate('Home');
+    } catch (error) {
+      console.log('Erro no login:', error);
+    }
+  };
+
   const controller: UseUserController = {
     handleLogin,
     listUsers,
     createUser,
+    handleLoginSubmit,
   };
 
   return {

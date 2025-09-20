@@ -6,7 +6,6 @@ import { RootStackParamList } from '../types/root.types';
 import { BasicForm } from '../shared/components/basic-form.component';
 import { useState } from 'react';
 import { useUser } from '../features/user/ui/use-user';
-import { Alert } from 'react-native';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -15,15 +14,7 @@ const LoginPage = () => {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const { controller, loading, error } = useUser();
-  const handleLoginSubmit = async () => {
-    try {
-      await controller.handleLogin(email, password);
-      Alert.alert('Login realizado com sucesso!');
-      navigation.navigate('Home');
-    } catch (error) {
-      console.log('Erro no login:', error);
-    }
-  };
+
   const loginConfig = {
     fields: [
       {
@@ -49,7 +40,9 @@ const LoginPage = () => {
         variant: 'primary' as const,
         size: 'medium' as const,
         loading: loading,
-        handleClick: handleLoginSubmit,
+        handleClick: () => {
+          controller.handleLoginSubmit(email, password);
+        },
       },
       {
         label: 'Esqueci a senha',

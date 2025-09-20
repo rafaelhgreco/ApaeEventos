@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
 import { Container, Typography } from '../base';
-import { BasicForm } from '../shared/components/basic-form.component';
 import { BasicButton } from '../shared/components/buttons/basic.button';
 import { Parallax } from '../shared/components/layout/parallax-scroll.view';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
