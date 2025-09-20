@@ -11,6 +11,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		2465E2AEDDE54A00B0EFF9B2 /* fonnts.com-Domus.otf in Resources */ = {isa = PBXBuildFile; fileRef = 506820853CCB4BD2A9FB9032 /* fonnts.com-Domus.otf */; };
+		F622A3A0AD984B7D9574ADBB /* fonnts.com-Domus_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B62AF60507A042DF907B88F1 /* fonnts.com-Domus_Bold.otf */; };
+		AE8488E7AA414C21ACF3A801 /* fonnts.com-Domus_Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D33FC04285E471287F9C393 /* fonnts.com-Domus_Extrabold.otf */; };
+		993220403C1E4EFBBC62A24B /* fonnts.com-Domus_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 516F649B30424B979A6BF57F /* fonnts.com-Domus_Light.otf */; };
+		C5ABC22429EC45199122EF2C /* fonnts.com-Domus_Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C0190FBA2E14D87A742045F /* fonnts.com-Domus_Semibold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ApaeEventos/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ApaeEventos/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		506820853CCB4BD2A9FB9032 /* fonnts.com-Domus.otf */ = {isa = PBXFileReference; name = "fonnts.com-Domus.otf"; path = "../assets/fonts/fonnts.com-Domus.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B62AF60507A042DF907B88F1 /* fonnts.com-Domus_Bold.otf */ = {isa = PBXFileReference; name = "fonnts.com-Domus_Bold.otf"; path = "../assets/fonts/fonnts.com-Domus_Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8D33FC04285E471287F9C393 /* fonnts.com-Domus_Extrabold.otf */ = {isa = PBXFileReference; name = "fonnts.com-Domus_Extrabold.otf"; path = "../assets/fonts/fonnts.com-Domus_Extrabold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		516F649B30424B979A6BF57F /* fonnts.com-Domus_Light.otf */ = {isa = PBXFileReference; name = "fonnts.com-Domus_Light.otf"; path = "../assets/fonts/fonnts.com-Domus_Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4C0190FBA2E14D87A742045F /* fonnts.com-Domus_Semibold.otf */ = {isa = PBXFileReference; name = "fonnts.com-Domus_Semibold.otf"; path = "../assets/fonts/fonnts.com-Domus_Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				6316377FF5AF4344BE645BDD /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -96,6 +107,19 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		6316377FF5AF4344BE645BDD /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				506820853CCB4BD2A9FB9032 /* fonnts.com-Domus.otf */,
+				B62AF60507A042DF907B88F1 /* fonnts.com-Domus_Bold.otf */,
+				8D33FC04285E471287F9C393 /* fonnts.com-Domus_Extrabold.otf */,
+				516F649B30424B979A6BF57F /* fonnts.com-Domus_Light.otf */,
+				4C0190FBA2E14D87A742045F /* fonnts.com-Domus_Semibold.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -159,6 +183,11 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				2465E2AEDDE54A00B0EFF9B2 /* fonnts.com-Domus.otf in Resources */,
+				F622A3A0AD984B7D9574ADBB /* fonnts.com-Domus_Bold.otf in Resources */,
+				AE8488E7AA414C21ACF3A801 /* fonnts.com-Domus_Extrabold.otf in Resources */,
+				993220403C1E4EFBBC62A24B /* fonnts.com-Domus_Light.otf in Resources */,
+				C5ABC22429EC45199122EF2C /* fonnts.com-Domus_Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

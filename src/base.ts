@@ -7,6 +7,8 @@ type FlexProps = {
   row?: boolean;
   gap?: number;
   padding?: number;
+  marginTop?: number;
+  margin?: number;
   spaceBetween?: boolean;
   center?: boolean;
   left?: boolean;
@@ -14,10 +16,23 @@ type FlexProps = {
 };
 
 const Flex = styled.View<FlexProps>(
-  ({ column, row, gap, padding, spaceBetween, center, left, right }) => ({
+  ({
+    column,
+    row,
+    gap,
+    padding,
+    marginTop,
+    margin,
+    spaceBetween,
+    center,
+    left,
+    right,
+  }) => ({
     flexDirection: column ? 'column' : row ? 'row' : 'column',
     gap,
     ...(typeof padding === 'number' ? { padding } : {}),
+    ...(typeof marginTop === 'number' ? { marginTop } : {}),
+    ...(typeof margin === 'number' ? { margin } : {}),
     justifyContent: spaceBetween
       ? 'space-between'
       : center
