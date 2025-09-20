@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container } from '../base';
-import { useUser } from '../features/user/ui/use-user';
+import { useUser } from '../features/user/UI/use-user';
 import { BasicForm } from '../shared/components/basic-form.component';
 import { Parallax } from '../shared/components/layout/parallax-scroll.view';
 import { Alert } from 'react-native';

@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/root.types';
 import { BasicForm } from '../shared/components/basic-form.component';
 import { useState } from 'react';
-import { useUser } from '../features/user/ui/use-user';
+import { useUser } from '../features/user/UI/use-user';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
