@@ -1,23 +1,19 @@
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import { Teste } from './src/teste';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 import { defaultTheme, darkTheme } from './src/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { TesteDois } from './src/testedois';
 import { HomePage } from './src/pages/home';
 import { LoginPage } from './src/pages/login';
-import { LoginForm } from './src/features/user/ui/LoginForm';
 import { RegisterPage } from './src/pages/register';
+import { DashboardPage } from './src/pages/dashboard';
 
 const Stack = createNativeStackNavigator<{
   Home: undefined;
   Login: undefined;
   Register: undefined;
+  Dashboard: undefined;
 }>();
 
 function App() {
@@ -43,6 +39,11 @@ function App() {
             <Stack.Screen
               name="Register"
               component={RegisterPage}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Dashboard"
+              component={DashboardPage}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

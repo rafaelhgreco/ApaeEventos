@@ -50,6 +50,12 @@ const LoginPage = () => {
         size: 'medium' as const,
         handleClick: () => {},
       },
+      {
+        label: 'Voltar',
+        variant: 'outlined' as const,
+        size: 'small' as const,
+        handleClick: () => navigation.navigate('Home'),
+      },
     ],
   };
 
@@ -66,11 +72,6 @@ const LoginPage = () => {
         )}
         <BasicForm {...loginConfig} />
       </Container.Flex>
-      <BasicButton
-        label="Voltar para Home"
-        size="small"
-        handleClick={() => navigation.navigate('Home')}
-      />
     </>
   );
 };

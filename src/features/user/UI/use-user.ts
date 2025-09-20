@@ -1,20 +1,23 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { userController } from '../application/user.controller';
 import type { User } from '../entity/user.entity';
-import { signIn } from '../firebase/sing-in.auth';
+import { signOutUser } from '../firebase/sing-in.auth';
 import { useUserStore } from './user.store';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../types/root.types';
+import { LoginUserUseCase } from '../application/use-case/login-user-use-case';
 
 interface UseUserController {
   handleLogin: (email: string, password: string) => Promise<void>;
+  handleLogout: () => Promise<void>;
   listUsers: () => Promise<void>;
   createUser: (
-    userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>,
+    userData: Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'type'>,
   ) => Promise<User | null>;
   handleLoginSubmit: (email: string, password: string) => Promise<void>;
+  handleRedirectToTypeBasedPage: (type: number) => void;
 }
 
 interface UseUserProps {
@@ -31,13 +34,19 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  const loginUserUseCase = useMemo(() => new LoginUserUseCase(), []);
+
   const handleLogin = useCallback(
     async (email: string, password: string) => {
       setLoading(true);
       setError(null);
       try {
-        const idToken = await signIn(email, password);
+        const { idToken, profile } = await loginUserUseCase.execute(
+          email,
+          password,
+        );
         setToken(idToken);
+        handleRedirectToTypeBasedPage(profile.type);
       } catch (error: any) {
         console.log('Erro ao autenticar:', error);
         setError('Erro ao autenticar');
@@ -48,6 +57,16 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
     },
     [setToken],
   );
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await signOutUser();
+      Alert.alert('Logout realizado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      Alert.alert('Erro ao fazer logout. Tente novamente.');
+    }
+  }, [setToken, navigation]);
 
   const listUsers = useCallback(async () => {
     setLoading(true);
@@ -63,7 +82,7 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
   }, []);
 
   const createUser = useCallback(
-    async (userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) => {
+    async (userData: Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'type'>) => {
       setLoading(true);
       setError(null);
       try {
@@ -80,11 +99,29 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
     [],
   );
 
+  const handleRedirectToTypeBasedPage = (type: number) => {
+    switch (type) {
+      case 2:
+        navigation.navigate('Dashboard');
+        Alert.alert('Admin user logged in');
+        break;
+      case 1:
+        // navigation.navigate('CollaboratorDashboard');
+        Alert.alert('Collaborator user logged in');
+        break;
+      case 0:
+        // navigation.navigate('UserDashboard');
+        Alert.alert('Common user logged in');
+        break;
+      default:
+        Alert.alert('Tipo de usuário desconhecido');
+        break;
+    }
+  };
+
   const handleLoginSubmit = async (email: string, password: string) => {
     try {
       await controller.handleLogin(email, password);
-      Alert.alert('Login realizado com sucesso!');
-      navigation.navigate('Home');
     } catch (error) {
       console.log('Erro no login:', error);
     }
@@ -92,9 +129,11 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
 
   const controller: UseUserController = {
     handleLogin,
+    handleLogout,
     listUsers,
     createUser,
     handleLoginSubmit,
+    handleRedirectToTypeBasedPage,
   };
 
   return {

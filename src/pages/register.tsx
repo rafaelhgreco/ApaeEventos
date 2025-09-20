@@ -13,18 +13,12 @@ const RegisterPage = () => {
     name: '',
     email: '',
     password: '',
-    type: '',
   });
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { controller, loading, error } = useUser();
+  const { controller, loading } = useUser();
   const handleRegisterSubmit = async () => {
-    if (
-      form.name === '' ||
-      form.email === '' ||
-      form.password === '' ||
-      form.type === ''
-    ) {
+    if (form.name === '' || form.email === '' || form.password === '') {
       Alert.alert('Por favor, preencha todos os campos.');
       return;
     }
@@ -36,7 +30,7 @@ const RegisterPage = () => {
       console.log('Erro no login:', error);
     }
 
-    setForm({ name: '', email: '', password: '', type: '' });
+    setForm({ name: '', email: '', password: '' });
   };
 
   const registerConfig = {
@@ -64,14 +58,6 @@ const RegisterPage = () => {
         required: true,
         value: form.password,
         onChangeText: (text: string) => setForm({ ...form, password: text }),
-      },
-      {
-        type: 'text' as 'text',
-        placeholder: 'Tipo (admin/user)',
-        name: 'type',
-        required: true,
-        value: form.type, // COLLABORATOR teremos que refatorar isso
-        onChangeText: (text: string) => setForm({ ...form, type: text }),
       },
     ],
     buttons: [

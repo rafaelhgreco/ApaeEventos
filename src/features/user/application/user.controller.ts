@@ -5,7 +5,9 @@ export const userController = {
   async getUser(id: string) {
     return userService.getUser(id);
   },
-  async createUser(userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
+  async createUser(
+    userData: Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'type'>,
+  ) {
     return userService.createUser(userData);
   },
 };
