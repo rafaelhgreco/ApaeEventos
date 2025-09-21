@@ -7,7 +7,6 @@ import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../types/root.types';
-import { LoginUserUseCase } from '../application/use-case/login-user-use-case';
 
 interface UseUserController {
   handleLogin: (email: string, password: string) => Promise<void>;
@@ -30,23 +29,20 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { setToken } = useUserStore();
+  const { setToken, clearToken } = useUserStore();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const loginUserUseCase = useMemo(() => new LoginUserUseCase(), []);
+  const controllerUser = useMemo(() => userController, []);
 
   const handleLogin = useCallback(
     async (email: string, password: string) => {
       setLoading(true);
       setError(null);
       try {
-        const { idToken, profile } = await loginUserUseCase.execute(
-          email,
-          password,
-        );
-        setToken(idToken);
-        handleRedirectToTypeBasedPage(profile.type);
+        const userProfile = await controllerUser.login(email, password);
+        setToken(userProfile.idToken);
+        handleRedirectToTypeBasedPage(userProfile.type);
       } catch (error: any) {
         console.log('Erro ao autenticar:', error);
         setError('Erro ao autenticar');
@@ -60,7 +56,9 @@ export function useUser(): { controller: UseUserController } & UseUserProps {
 
   const handleLogout = useCallback(async () => {
     try {
-      await signOutUser();
+      await controllerUser.logout();
+      clearToken();
+      navigation.navigate('Home');
       Alert.alert('Logout realizado com sucesso!');
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
