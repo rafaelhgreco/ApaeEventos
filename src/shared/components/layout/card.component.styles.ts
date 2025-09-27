@@ -14,7 +14,7 @@ const sizeWidth = {
 const sizeHeight = {
   small: 100,
   medium: 120,
-  large: 200,
+  large: 320,
 };
 
 const sizePadding = {

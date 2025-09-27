@@ -1,4 +1,5 @@
 import { Container, Typography } from '../base';
+import { DashboardSection } from '../features/events/components/dashboard.section';
 import { useUser } from '../features/user/UI/use-user';
 import { BasicButton } from '../shared/components/buttons/basic.button';
 import { Card } from '../shared/components/layout/card.component';
@@ -8,12 +9,7 @@ const DashboardPage = () => {
   return (
     <>
       <Container.Flex center gap={20} padding={20}>
-        <Typography.Title color="text">Painel de Eventos</Typography.Title>
-        <Card backgroundColor="foregroundBlack" size="large">
-          <Typography.Text color="white">
-            Bem-vindo ao Dashboard!
-          </Typography.Text>
-        </Card>
+        <DashboardSection />
 
         <Container.Flex
           width="100%"
