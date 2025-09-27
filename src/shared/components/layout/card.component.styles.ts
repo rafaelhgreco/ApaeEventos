@@ -6,7 +6,7 @@ import { formatSize } from '../../../utils/format-size.utils';
 export type Size = 'small' | 'medium' | 'large';
 
 const sizeWidth = {
-  small: 200,
+  small: 180,
   medium: 380,
   large: 380,
 };
