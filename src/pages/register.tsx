@@ -24,7 +24,7 @@ const RegisterPage = () => {
     }
     try {
       console.log('form', form);
-      await controller.createUser(form);
+      await controller.createUser({ ...form, idToken: '' });
       Alert.alert('Usuário registrado com sucesso!');
     } catch (error) {
       console.log('Erro no login:', error);

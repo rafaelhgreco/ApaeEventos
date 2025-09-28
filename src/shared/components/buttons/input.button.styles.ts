@@ -6,7 +6,7 @@ export const shadow = css`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.23;
   shadow-radius: 2.62px;
-  elevation: 4;
+  elevation: 2;
 `;
 
 const InputButton = styled.TouchableOpacity`
@@ -21,7 +21,7 @@ const InputContainer = styled.View`
   border-width: 0.5px;
   border-color: transparent;
   border-radius: ${theme.borderRadius('md')};
-  border-color: ${theme.color('border')};
+  border-color: ${theme.color('terceary')};
   background-color: ${theme.color('background')};
   ${shadow}
 `;
