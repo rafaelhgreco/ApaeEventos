@@ -6,21 +6,15 @@ import { Styled } from './admin-overview-card.component.styles';
 const buttons = [
   {
     label: 'Total Eventos',
-    onPress: () => {
-      // Chame a API de eventos aqui
-    },
+    onPress: () => {},
   },
   {
     label: 'Total Ingressos',
-    onPress: () => {
-      // Chame a API de ingressos aqui
-    },
+    onPress: () => {},
   },
   {
     label: 'Próximos eventos',
-    onPress: () => {
-      // Chame a API de próximos eventos aqui
-    },
+    onPress: () => {},
   },
 ];
 
@@ -45,6 +39,11 @@ const AdminOverviewCard = () => {
             </Typography.Label>
           </Styled.Button>
         ))}
+      </Container.Flex>
+      <Container.Flex>
+        <Typography.Text color="white" center>
+          Conteúdo do card de visão geral do administrador.
+        </Typography.Text>
       </Container.Flex>
     </Card>
   );
