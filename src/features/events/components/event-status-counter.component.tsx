@@ -27,7 +27,7 @@ export const EventStatusCounter: React.FC<EventStatusCounterProps> = ({
 
   return (
     <Container.Flex center marginTop={40}>
-      <Styled.Total>Total: {total}</Styled.Total>
+      <Styled.Total>Eventos: {total}</Styled.Total>
       <Styled.StatusRow>
         {items.map(item => (
           <Styled.StatusItem key={item.label}>
