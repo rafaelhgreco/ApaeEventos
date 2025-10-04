@@ -5,14 +5,14 @@ import { AdminOverviewCard } from './admin-overview-card.component';
 import { useAdmin } from './ui/use-admin';
 
 const DashboardSection = () => {
-  const { allEventsEntity, fetchAllEvents } = useAdmin();
+  const { events, loading, fetchAllEvents } = useAdmin();
   useEffect(() => {
     fetchAllEvents();
   }, []);
   return (
     <>
       <Typography.Title color="text">Painel Administrador</Typography.Title>
-      <AdminOverviewCard />
+      <AdminOverviewCard events={events} loading={loading} />
     </>
   );
 };

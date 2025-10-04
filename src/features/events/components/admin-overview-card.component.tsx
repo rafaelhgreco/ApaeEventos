@@ -2,6 +2,15 @@ import { useState } from 'react';
 import { Container, Typography } from '../../../base';
 import { Card } from '../../../shared/components/layout/card.component';
 import { Styled } from './admin-overview-card.component.styles';
+import { AdminOverviewList } from './admin-overview-list.component';
+import { EventStatusCounter } from './event-status-counter.component';
+import { EventModel } from './ui/event.model';
+import { useAdminDashboard } from './ui/use-admin-dashboard';
+
+export interface AdminOverviewCardProps {
+  events: EventModel[];
+  loading: boolean;
+}
 
 const buttons = [
   {
@@ -18,9 +27,12 @@ const buttons = [
   },
 ];
 
-const AdminOverviewCard = () => {
+const AdminOverviewCard = ({ events, loading }: AdminOverviewCardProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const dashboard = useAdminDashboard(events, loading);
+  console.log('Cancelados:', dashboard.statusCount.CANCELLED);
+  console.log('Total:', dashboard.totalEvents);
+  console.log(events);
   return (
     <Card backgroundColor="foregroundBlack" size="large">
       <Container.Flex direction="row" width="100%" center gap={16}>
@@ -41,9 +53,35 @@ const AdminOverviewCard = () => {
         ))}
       </Container.Flex>
       <Container.Flex>
-        <Typography.Text color="white" center>
-          Conteúdo do card de visão geral do administrador.
-        </Typography.Text>
+        {activeIndex === 0 && (
+          <EventStatusCounter
+            total={events.length}
+            items={[
+              {
+                label: 'Agendados',
+                value: dashboard.statusCount.SCHEDULED || 0,
+              },
+              {
+                label: 'À venda',
+                value: dashboard.statusCount.OPEN_FOR_SALE || 0,
+              },
+              {
+                label: 'Esgotados',
+                value: dashboard.statusCount.SOLD_OUT || 0,
+              },
+              {
+                label: 'Cancelados',
+                value: dashboard.statusCount.CANCELLED || 0,
+              },
+              {
+                label: 'Finalizados',
+                value: dashboard.statusCount.FINISHED || 0,
+              },
+            ]}
+            loading={loading}
+            error={undefined}
+          />
+        )}
       </Container.Flex>
     </Card>
   );

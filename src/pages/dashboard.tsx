@@ -1,11 +1,14 @@
+import { useEffect } from 'react';
 import { Container, Typography } from '../base';
 import { DashboardSection } from '../features/events/components/dashboard.section';
+import { useAdmin } from '../features/events/components/ui/use-admin';
 import { useUser } from '../features/user/UI/use-user';
 import { BasicButton } from '../shared/components/buttons/basic.button';
 import { Card } from '../shared/components/layout/card.component';
 
 const DashboardPage = () => {
   const { controller } = useUser();
+
   return (
     <>
       <Container.Flex center gap={20} padding={20}>
