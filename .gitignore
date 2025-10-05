@@ -1,7 +1,10 @@
 # OSX
 #
 .DS_Store
-
+.env
+firebase-credentials.json
+google-services.json
+yarn.lock
 # Xcode
 #
 build/

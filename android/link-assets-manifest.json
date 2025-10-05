@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/fonnts.com-Domus.otf",
+      "sha1": "030e5833aec5b8ecec497dea7dcac84dd7ed74d6"
+    },
+    {
+      "path": "assets/fonts/fonnts.com-Domus_Bold.otf",
+      "sha1": "a87cefa9ea99304283f548f30029d0ad5a78de9b"
+    },
+    {
+      "path": "assets/fonts/fonnts.com-Domus_Extrabold.otf",
+      "sha1": "9622f0eb50db5a815bee96562ae6f8a0a08779a1"
+    },
+    {
+      "path": "assets/fonts/fonnts.com-Domus_Light.otf",
+      "sha1": "3da868b3c24ec1afff0b462b76a17ee0b25fcdf7"
+    },
+    {
+      "path": "assets/fonts/fonnts.com-Domus_Semibold.otf",
+      "sha1": "3e0f87aed95718fd0b0bbb61d07715a741edcf69"
+    }
+  ]
+}

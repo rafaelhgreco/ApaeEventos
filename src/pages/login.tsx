@@ -1,0 +1,79 @@
+import { Container, Typography } from '../base';
+import { BasicButton } from '../shared/components/buttons/basic.button';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/root.types';
+import { BasicForm } from '../shared/components/basic-form.component';
+import { useState } from 'react';
+import { useUser } from '../features/user/UI/use-user';
+
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const { controller, loading, error } = useUser();
+
+  const loginConfig = {
+    fields: [
+      {
+        type: 'email' as 'email',
+        placeholder: 'E-mail',
+        name: 'email',
+        required: true,
+        value: email,
+        onChangeText: (text: string) => setEmail(text),
+      },
+      {
+        type: 'password' as 'password',
+        placeholder: 'Senha',
+        name: 'password',
+        required: true,
+        value: password,
+        onChangeText: (text: string) => setPassword(text),
+      },
+    ],
+    buttons: [
+      {
+        label: 'iniciar sessão',
+        variant: 'primary' as const,
+        size: 'medium' as const,
+        loading: loading,
+        handleClick: () => {
+          controller.handleLoginSubmit(email, password);
+        },
+      },
+      {
+        label: 'Esqueçeu sua senha?',
+        variant: 'minimal' as const,
+        size: 'medium' as const,
+        handleClick: () => {},
+      },
+      {
+        label: 'Voltar',
+        variant: 'outlined' as const,
+        size: 'small' as const,
+        handleClick: () => navigation.navigate('Home'),
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Container.Flex center margin={100}>
+        <Typography.Title color="text">Apae Eventos</Typography.Title>
+      </Container.Flex>
+      <Container.Flex padding={10}>
+        {error && (
+          <Typography.Text color="error" center>
+            {error}
+          </Typography.Text>
+        )}
+        <BasicForm {...loginConfig} />
+      </Container.Flex>
+    </>
+  );
+};
+
+export { LoginPage };
