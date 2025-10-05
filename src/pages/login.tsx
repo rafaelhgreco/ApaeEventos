@@ -45,7 +45,7 @@ const LoginPage = () => {
         },
       },
       {
-        label: 'Esqueci a senha',
+        label: 'Esqueçeu sua senha?',
         variant: 'minimal' as const,
         size: 'medium' as const,
         handleClick: () => {},

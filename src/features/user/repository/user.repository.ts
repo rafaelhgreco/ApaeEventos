@@ -7,5 +7,4 @@ export interface UserRepository {
   ): Promise<User>;
   updateUser(id: string, user: Partial<User>): Promise<User>;
   deleteUser(id: string): Promise<void>;
-  loginApi(idToken: string): Promise<{ token: string }>;
 }

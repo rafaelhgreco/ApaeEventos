@@ -1,3 +1,4 @@
+import { User } from '../../entity/user.entity';
 import { getUserProfile } from '../../firebase/get-user-profile';
 import { signIn } from '../../firebase/sing-in.auth';
 
@@ -13,14 +14,19 @@ export class LoginUserUseCase {
       );
     }
 
-    return {
+    const profile: User = {
+      id: user.uid,
       idToken,
-      profile: {
-        uid: user.uid,
-        email: user.email,
-        type: userProfile.type,
-        ...userProfile,
-      },
+      email: user.email || '',
+      name: userProfile.name || 'Nome não informado',
+      password: '',
+      type: userProfile.type,
+      createdAt: userProfile.createdAt || new Date(),
+      updatedAt: userProfile.updatedAt || new Date(),
+    };
+
+    return {
+      profile,
     };
   }
 }

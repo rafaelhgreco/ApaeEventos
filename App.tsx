@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '@emotion/react';
 import { defaultTheme, darkTheme } from './src/theme';
@@ -8,6 +8,7 @@ import { HomePage } from './src/pages/home';
 import { LoginPage } from './src/pages/login';
 import { RegisterPage } from './src/pages/register';
 import { DashboardPage } from './src/pages/dashboard';
+import { navDarkTheme, navDefaultTheme } from './src/theme-navigation';
 
 const Stack = createNativeStackNavigator<{
   Home: undefined;
@@ -19,12 +20,13 @@ const Stack = createNativeStackNavigator<{
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const theme = isDarkMode ? darkTheme : defaultTheme;
+  const navigationTheme = isDarkMode ? navDarkTheme : navDefaultTheme;
 
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <NavigationContainer>
+        <NavigationContainer theme={navigationTheme}>
           <Stack.Navigator>
             <Stack.Screen
               name="Home"
@@ -44,7 +46,7 @@ function App() {
             <Stack.Screen
               name="Dashboard"
               component={DashboardPage}
-              options={{ headerShown: false }}
+              options={{ headerShown: true, title: 'Dashboard' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

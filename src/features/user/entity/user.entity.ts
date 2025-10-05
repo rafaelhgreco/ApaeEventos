@@ -1,9 +1,10 @@
 interface User {
   id: string;
+  idToken: string;
   name: string;
   email: string;
   password: string;
-  type: string;
+  type: number;
   createdAt: Date;
   updatedAt: Date;
 }

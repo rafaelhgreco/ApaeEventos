@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
 type UserStore = {
-  token: string | null;
+  token: string | undefined;
   setToken: (token: string) => void;
   clearToken: () => void;
 };
 
 export const useUserStore = create<UserStore>(set => ({
-  token: null,
+  token: undefined,
   setToken: token => set({ token }),
-  clearToken: () => set({ token: null }),
+  clearToken: () => set({ token: undefined }),
 }));

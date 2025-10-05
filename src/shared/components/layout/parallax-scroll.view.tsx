@@ -1,12 +1,5 @@
 import React, { useRef } from 'react';
-import {
-  Animated,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import { Animated } from 'react-native';
 import { Styled } from './parallax-scroll.view.styles';
 import { Container, Typography } from '../../../base';
 

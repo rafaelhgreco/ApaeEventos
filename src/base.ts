@@ -3,52 +3,80 @@ import styled from '@emotion/native';
 // Container
 
 type FlexProps = {
-  column?: boolean;
+  direction?: 'row' | 'column';
   row?: boolean;
+  column?: boolean;
   gap?: number;
   padding?: number;
   marginTop?: number;
   margin?: number;
+  width?: number | `${number}%`;
   spaceBetween?: boolean;
   center?: boolean;
   left?: boolean;
   right?: boolean;
+  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
+  justifyContent?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
 };
 
 const Flex = styled.View<FlexProps>(
   ({
+    direction,
     column,
     row,
     gap,
     padding,
     marginTop,
     margin,
+    width,
     spaceBetween,
     center,
     left,
     right,
+    alignItems,
+    justifyContent,
   }) => ({
-    flexDirection: column ? 'column' : row ? 'row' : 'column',
+    flexDirection: direction
+      ? direction
+      : column
+      ? 'column'
+      : row
+      ? 'row'
+      : 'column',
     gap,
     ...(typeof padding === 'number' ? { padding } : {}),
     ...(typeof marginTop === 'number' ? { marginTop } : {}),
     ...(typeof margin === 'number' ? { margin } : {}),
-    justifyContent: spaceBetween
-      ? 'space-between'
-      : center
-      ? 'center'
-      : left
-      ? 'flex-start'
-      : right
-      ? 'flex-end'
-      : undefined,
-    alignItems: center
-      ? 'center'
-      : left
-      ? 'flex-start'
-      : right
-      ? 'flex-end'
-      : undefined,
+    ...(typeof width === 'number' ||
+    (typeof width === 'string' && /^\d+%$/.test(width))
+      ? { width }
+      : {}),
+    justifyContent:
+      justifyContent ??
+      (spaceBetween
+        ? 'space-between'
+        : center
+        ? 'center'
+        : left
+        ? 'flex-start'
+        : right
+        ? 'flex-end'
+        : undefined),
+    alignItems:
+      alignItems ??
+      (center
+        ? 'center'
+        : left
+        ? 'flex-start'
+        : right
+        ? 'flex-end'
+        : undefined),
   }),
 );
 
