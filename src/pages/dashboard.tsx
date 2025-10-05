@@ -5,6 +5,8 @@ import { useAdmin } from '../features/events/components/ui/use-admin';
 import { useUser } from '../features/user/UI/use-user';
 import { BasicButton } from '../shared/components/buttons/basic.button';
 import { Card } from '../shared/components/layout/card.component';
+import { InfoCard } from '../features/events/components/info-card.component';
+import { Alert } from 'react-native';
 
 const DashboardPage = () => {
   const { controller } = useUser();
@@ -20,17 +22,15 @@ const DashboardPage = () => {
           justifyContent="center"
           gap={15}
         >
-          <Card backgroundColor="light" size="small">
-            <Typography.Text color="text">
-              Este é um card estilizado.
-            </Typography.Text>
-          </Card>
+          <InfoCard
+            text="Criar um novo Evento"
+            onButtonPress={() => Alert.alert('Criar evento')}
+          />
 
-          <Card backgroundColor="light" size="small">
-            <Typography.Text color="text">
-              Este é um card estilizado.
-            </Typography.Text>
-          </Card>
+          <InfoCard
+            text="Gerenciar Eventos"
+            onButtonPress={() => Alert.alert('Gerenciar evento')}
+          />
         </Container.Flex>
 
         <Card backgroundColor="light" size="medium">
